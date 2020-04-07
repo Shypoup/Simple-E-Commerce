@@ -10,10 +10,33 @@ export default class Notification extends Component {
     
   render() {
 
+    const RECENTDATA = [
+      {
+        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+        title: 'A client purshased to buy 3 shirts, 4 Jeans, 5 Jackets and two shoses ',
+        price: '55 $'
+      },
+      {
+        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+        title: 'A client purshased to buy 3 shirts, 4 Jeans, 5 Jackets and two shoses',
+        price: '150 $'
+      },
+      {
+        id: '58694a0f-3da1-471f-bd96-145571e29d72',
+        title:'A client purshased to buy 3 shirts, 4 Jeans, 5 Jackets and two shoses',
+        price: '200 $'
+      },
+      {
+        id: 'bd7acbea-c1b1-46c2-aed5-3ad53a',
+        title:'A client purshased to buy 3 shirts, 4 Jeans, 5 Jackets and two shoses',
+        price: '55 $'
+      },
+
+    ]
     const DATA = [
       {
         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-        title: 'A client purshased to buy 3 shirts, 4 Jeans, 5 Jackets and two shoses',
+        title: 'A client purshased to buy 3 shirts, 4 Jeans, 5 Jackets and two shoses ',
         price: '55 $'
       },
       {
@@ -76,20 +99,38 @@ export default class Notification extends Component {
     return (
       
       <View style={styles.container}>
-        <Text style={{marginLeft:20, marginBottom:15}} h3>Notification</Text>
-      
+        <Text style={{marginLeft:20, marginBottom:1}} h3>Notification</Text>
+        <ScrollView>
         <View style={styles.cardsContainer}>
-        
+        <Text style={{marginLeft:20, marginBottom:5}} h4>Recent</Text>
           <FlatList
-             contentContainerStyle={{alignSelf: 'flex-start'}}
-             showsVerticalScrollIndicator={false}
-             showsHorizontalScrollIndicator={false}
+             data={RECENTDATA}
+             renderItem={({item}) => 
+            
+            <View style={styles.cardContainer}>
+              <View style={styles.letterContainer}><Text style={styles.letter}>N</Text></View>
+             <Text style={styles.cardTitle}>{item.title}</Text>
+             <View style={styles.dateContainer}>
+             <Text style={{marginHorizontal:5, alignContent:'center'}}>today</Text>
+             </View>
+             </View>
+
+            }
+             keyExtractor={item => item.id}
+             />
+
+          
+        <Text style={{marginLeft:20, marginBottom:15}} h4>Earlier</Text>
+          <FlatList
              data={DATA}
              renderItem={({item}) => 
             
             <View style={styles.cardContainer}>
-      
+              <View style={styles.letterContainer}><Text style={styles.letter}>N</Text></View>
              <Text style={styles.cardTitle}>{item.title}</Text>
+             <View style={styles.dateContainer}>
+             <Text style={{marginHorizontal:5, alignContent:'center'}}>2 day</Text>
+             </View>
              </View>
 
             }
@@ -97,13 +138,14 @@ export default class Notification extends Component {
              />
 
         </View>
-
+</ScrollView>
 
       
 
 
 
       </View>
+      
     );
   }
 }
@@ -112,71 +154,64 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop:50,
-    justifyContent:'flex-start'
+
   },
-  categoryContainer:{
-   marginBottom:30,
-   
-    
-  },
-  headerText: {
-    fontSize: 15,
-    margin: 10,
-    marginTop:30,
-    color: '#000',
-    marginLeft:30,
-    
-  },
-  scrollItem: {
-    flexDirection: 'row',
-    // height:200,
-  },
+ 
   cardsContainer:{
-    flexDirection:'row',
-    marginHorizontal:20,
-    marginBottom:50,
+    
+    // marginHorizontal:20,
+    // marginBottom:30,
+    width: deviceWidth
+
     
   },
   cardContainer:{
+    flexDirection:'row',
     backgroundColor:'#fff',
-    borderRadius:10,
+    // borderRadius:10,
     borderWidth:0.1,
     borderColor:'#000',
-    // marginHorizontal:5,
-    marginVertical:5,
+    
+    marginVertical:3,
+    width: deviceWidth,
     // height:100,
     
     
   },
-  cardContainer2:{
-    backgroundColor:'#fff',
-    borderRadius:10,
-    borderWidth:0.1,
-    borderColor:'#000',
-    marginVertical:5,
-    width:deviceWidth /2 -30,
-    
-    
+  letterContainer:{
+    height:50,
+    width:50,
+    justifyContent:'center',
+    backgroundColor: '#000',
+    marginHorizontal:10,
+    marginVertical:10,
+    borderRadius:30
   },
+  letter:{
+    color: '#fff',
+    fontWeight:'bold',
+    fontSize:20,
+    alignSelf:'center'
+
+  },
+
   cardTitle:{
     fontSize:15,
     marginHorizontal:10,
     marginBottom:15,
     marginTop:10,
+    width: deviceWidth,
+    flex: 1, 
+    // flexWrap: 'wrap'
 
   },
-  cardPrice:{
-    fontSize:25,
-    fontWeight:'bold',
-    alignSelf:'center',
-    marginTop:10,
-
-
+  dateContainer:{
+    height:50,
+    width:50,
+    justifyContent:'center',
+    
+    marginHorizontal:10,
+    marginVertical:10,
+    borderRadius:30
   },
-  cardImage:{
-    height:150,
-    width:deviceWidth /2 -20,
-    resizeMode:'contain'
-  },
- 
 });
