@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
   cardImage:{
     height:150,
     width:deviceWidth /2 -20,
-    resizeMode:'contain'
+    resizeMode:'contain',
   },
  
 });
