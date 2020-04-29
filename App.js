@@ -14,6 +14,7 @@ import Login  from './src/Auth/Login';
 import Register  from './src/Auth/Register';
 import AddProducts from './src/vendor/AddProduct';
 import Notification from './src/vendor/Notification';
+import HomeClient from './src/client/HomeClient'
 
 
 
@@ -121,7 +122,7 @@ export default function Auth() {
       >
         <Tab.Screen
           name="Home"
-          component={HomeVendor}
+          component={HomeClient}
         />
          <Tab.Screen
           name="Add"
